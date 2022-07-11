@@ -1,0 +1,103 @@
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>Students</title>
+<link rel="stylesheet" href="{% static '/home/css/students.css' %}" type="text/css">
+<style>
+      @import url("https://fonts.googleapis.com/css?family=Muli:400,700&display=swap");
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home'%}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'register' %}">Register</a>
+                </li>
+            </ul >
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+            
+        </div>
+    </nav>
+<h1>All studengts</h1>
+<div class="container">
+<div class="faders">
+<div class="left"></div>
+<div class="right"></div>
+</div>
+<div class="items">
+<div class="entry">
+<p class="name">John Doe</p>
+<img src=https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+<div class="entry">
+<p class="name">John Doe</p>
+<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smiling person" />
+<p class="quote">"Man, I think this app freaking rocks and stuff. Dude."</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="{% static '/home/css/register.css' %}" type="text/css">
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<style>
+    input, button, select, textarea {
+        width: 500px !important;
+     }
+</style>
+<!------ Include the above in your HEAD tag ---------->
+<body style="background-image: url({{ background }})">
+{% comment %} Nav bar {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        {% comment %} <a class="navbar-brand" href="{% url 'home'%}">Home</a> {% endcomment %}
+    <a class="nav-link active" href="{% url 'logout' %}" style="margin-left: 1070px;">Logout</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul >
+            
+        </div>
+    </nav>
+    {% comment %} body {% endcomment %}
+    <div class="container" >
+            <form class="form-horizontal" role="form" method = 'POST'  enctype="multipart/form-data" > {% csrf_token %}
+                <h2>{{ header }} </h2>
+                {{ form.as_p }}
+
+                {% comment %} <div class="form-group">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus name="f_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus name="l_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label">Email </label>
+                    <div class="col-sm-9">
+                        <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
+                    </div>
+                </div> {% endcomment %}
+                {% comment %} <div class="form-group">
+                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+                    <div class="col-sm-9">
+                        <input type="date" id="birthDate" class="form-control" name="dob">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="joinDate" class="col-sm-3 control-label">Date of Joining</label>
+                    <div class="col-sm-9">
+                        <input type="date" id="joinDate" class="form-control" name="doj">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="avatar" class="col-sm-3 control-label">Profile picture</label>
+                    <div class="col-sm-9">
+                        <input type="file" id="avatar" placeholder="select profile picture" class="form-control" name= "avatar"  accept="image/gif, image/jpeg, image/png, image/webp">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Height" class="col-sm-3 control-label">Branch </label>
+                    <div class="col-sm-9">
+                        <select id="cars" name="branch">
+                            <option value="1">E & C</option>
+                            <option value="2">MECHANICAL</option>
+                            <option value="3">COMPUTER SCIENCE</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Height" class="col-sm-3 control-label">Gender </label>
+                    <div class="col-sm-9">
+                        <select id="cars" name="gender">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                          </select>
+                    </div>
+                </div> <!-- /.form-group --> {% endcomment %}
+                <button type="submit" class="btn btn-primary btn-block">{{ button }}</button>
+            </form> <!-- /form -->
+    </div> <!-- ./container -->
+
+</body>

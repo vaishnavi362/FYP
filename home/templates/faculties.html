@@ -1,0 +1,157 @@
+{% load static %}
+
+<header>
+    <link rel="stylesheet" href="{% static '/home/css/faculties.css' %}" type="text/css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</header>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- details card section starts from here -->
+{% if request.user.is_superuser %} 
+
+<body stule="background-image: url({% static '/home/images/faculty_background.jpg' %})">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        {% comment %} <a class="navbar-brand" href="{% url 'home'%}">Home</a> {% endcomment %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'register' %}">Add Faculty</a>
+                </li>
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'Student_attendence_credentials' %}">Take Attendence</a>
+                </li> {% endcomment %}
+            </ul >
+            {% comment %} <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul> {% endcomment %}
+                <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
+{% comment %} filter {% endcomment %}
+
+
+<section class="details-card">
+    {% comment %} faculty cards {% endcomment %}
+    <div class="container">
+        <div class="row">
+            {% for faculty in object_list %}
+            <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        {% if faculty.image %}
+                            <a href="{% url 'facultyt_details' faculty.pk %}">
+                                <img src="{{ faculty.image.url }}" alt="" style="width: 350px; height: 280px;">
+                            </a>
+                        {% else %} 
+                            <img src="/media/faculties/default_faculty.jpg" alt="" style="width: 290px;height: 176px">
+                        {% endif %}
+                        <span><h4>{{ faculty.first_name }}</h4></span>
+                    </div>
+                    <div class="card-desc">
+                        <h3>{{ faculty.first_name }}</h3>
+                        <p>  {{ faculty.first_name}} {{ faculty.last_name}}</p>
+                            {% comment %} <a href="{% url 'update_faculty' faculty.pk %}" class="btn-card">More</a>    {% endcomment %}
+                            <a href="{% url 'update_faculty' faculty.pk %}" class="btn-card">Edit</a>   
+                            <a href="{% url 'delete_faculty' faculty.pk %}" class="btn-card">Delete</a>   
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% comment %} <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        <img src="{% static '/home/images/f4.jpg' %}" alt="" style="width: 350px; height: 280px;">
+                        <span><h4>Faculty2</h4></span>
+                    </div>
+                    <div class="card-desc">
+                        <h3>Heading2</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
+                            voluptas totam</p>
+                            <a href="#" class="btn-card">More</a>   
+                    </div>
+                </div>
+            </div> {% endcomment %}
+            {% comment %} <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        <img src="{% static '/home/images/f3.jpg' %}" alt="" style="width: 350px; height: 280px;">
+                        <span><h4>Faculty3</h4></span>
+                    </div>
+                    <div class="card-desc">
+                        <h3>Heading3</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
+                            voluptas totam</p>
+                            <a href="#" class="btn-card">More</a>   
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+{% comment %} <br>
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        <img src="{% static '/home/images/f5.jpg' %}" alt="" style="width: 350px; height: 280px;">
+                        <span><h4>Faculty4</h4></span>
+                    </div>
+                    <div class="card-desc">
+                        <h3>Heading4</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
+                            voluptas totam</p>
+                            <a href="#" class="btn-card">More</a>   
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        <img src="{% static '/home/images/f6.jpg' %}" alt="" style="width: 350px; height: 280px;">
+                        <span><h4>Faculty6</h4></span>
+                    </div>
+                    <div class="card-desc">
+                        <h3>Heading5</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
+                            voluptas totam</p>
+                            <a href="#" class="btn-card">More</a>   
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        <img src="{% static '/home/images/f7.jpg' %}" alt="" style="width: 350px; height: 280px;">
+                        <span><h4>Faculty6</h4></span>
+                    </div>
+                    <div class="card-desc">
+                        <h3>Heading6</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
+                            voluptas totam</p>
+                            <a href="#" class="btn-card">More</a>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+</section>
+<!-- details card section starts from here -->
+</body>
+{% else %}
+Only admin has acess to this page!
+please login as admin....
+<a class="navbar-brand" href="{% url 'home'%}">Go to home</a>
+{% endif %}

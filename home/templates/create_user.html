@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+} 
+</style>
+</head>
+<body>
+  <ul>
+    {% comment %} <li><a class="active" href="{% url 'home' %}">Home</a></li> {% endcomment %}
+    {% if obj.class_name  == 'student' %}
+    <li><a href="{% url 'students1' %}">Back</a></li>
+    {% elif  obj.class_name  == 'faculty' %}
+    <li><a href="{% url 'faculties' %}">Back</a></li>
+    {% endif %}
+    <li><a class="nav-link active" href="{% url 'logout' %}" >Logout</a></li>
+
+  </ul>
+  
+
+<form action="" method="POST">{% csrf_token %}
+  <center>
+    <div class="container">
+      <h1>Crate user</h1>
+      <p>Please fill belod details to create user</p>
+      <hr>
+      {% if  not obj.status %}
+      <h3 style="color:red">{{ request.session.user_error }}</h3>
+      <label for="faculty">Choose user:</label>
+
+      <select name="faculty" id="faculty" style="    width: 50%;height: 38px;">
+        {% comment %} {% for faculty in obj  %} {% endcomment %}
+        <option value="{{ obj.pk }}">{{ obj.first_name }} {{obj.last_name  }}</option>
+        {% comment %} {% endfor %} {% endcomment %}
+      </select>
+
+      <br>
+      <br>
+      <label for="psw"><b>Username</b></label>
+      <input type="text" placeholder="Enter username" name="username" id="username" required>
+
+      <label for="pwd"><b>Password</b></label>
+      <input type="password" placeholder="Password" name="pwd" id="pwd" required>
+      <hr>
+
+      <button type="submit" class="registerbtn" style="width:20%;border-radius:30px" name="submit">Create user  </button>
+    </div>
+    {% else %}
+      <h3 style="color:red">user alreday added</h3>
+    {% endif %}
+</center>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% comment %} {% extends "acess_denied.html" %} {% endcomment %}
+{% load static %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="{% static '/home/css/faculties.css' %}" type="text/css">
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+{% if request.user.is_staff %} 
+<body style="background-image:url({% static '/home/images/student_list_background.jpg' %})">
+  <ul>
+    {% comment %} <li><a class="active" href="{% url 'home' %}">Home</a></li> {% endcomment %}
+    <li><a href="{% url 'register_student' %}">Add student</a></li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'Student_attendence_credentials' %}">Take Attendance</a>
+  ` </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'attendence_overview' %}">View Attendance</a>
+` </li>
+    <li>
+      <a class="nav-link active" href="{% url 'logout' %}" >Logout</a>
+    </li>
+  </ul>
+
+
+
+
+  <div class="container">
+    {% for student in object_list %}
+      <div class="well" >
+          <div class="media">
+            <a class="pull-left" href="#">
+            <img class="media-object" src="{{ student.image.url }}" style="width: 200px;height: 150px;">
+            </a>
+          <div class="media-body">
+            <h4 class="media-heading">{{ student.first_name }} {{ student.last_name }}</h4>
+              <p class="text-right">{{ student.student_usn }}</p>
+              <p>Student name : {{ student.first_name }} {{ student.last_name }} and USN : {{  student.student_usn }}  Semester : {{ student.sem }}  </p>
+              <p>Branch : {{ student.branch }}</p>
+              {% comment %} <ul class="list-inline list-unstyled"> {% endcomment %}
+                <a href="{% url 'update_student' student.pk %}" class="btn-card">Edit</a>   
+                <a href="{% url 'delete_student' student.pk %}" class="btn-card">Delete</a>  
+                <a href="{% url 'student_details' student.pk %}" class="btn-card">MORE</a>  
+          {% comment %} </ul> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+{% else %}
+ Only faculty has acess to this page!
+<a class="navbar-brand" href="{% url 'home'%}">Go to home</a>
+{% endif %}

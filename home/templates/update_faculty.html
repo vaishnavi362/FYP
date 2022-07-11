@@ -1,0 +1,35 @@
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="{% static '/home/css/register.css' %}" type="text/css">
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<body style="background-image: url({% static '/home/images/regidter.jpg' %} )">
+{% comment %} Nav bar {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home'%}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul >
+            
+        </div>
+    </nav>
+    {% comment %} body {% endcomment %}
+    <div class="container" >
+            <form class="form-horizontal" role="form" method = 'POST'  enctype="multipart/for-data"> {% csrf_token %}
+                <h2>Update </h2>
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
+            </form> <!-- /form -->
+    </div> <!-- ./container -->
+
+</body>

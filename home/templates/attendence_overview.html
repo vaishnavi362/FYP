@@ -1,0 +1,189 @@
+
+{% load static %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="{% static '/home/css/students_attendence.css' %}" type="text/css">
+
+<!------ Include the above in your HEAD tag ---------->
+{% comment %} <a class="navbar-brand" href="{% url 'home'%}">Home</a> {% endcomment %}
+
+
+<style>
+	ul {
+	  list-style-type: none;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+	  background-color: #333;
+	}
+	
+	li {
+	  float: left;
+	}
+	
+	li a {
+	  display: block;
+	  color: white;
+	  text-align: center;
+	  padding: 14px 16px;
+	  text-decoration: none;
+	}
+	
+	li a:hover {
+	  background-color: #111;
+	}
+	</style>
+
+
+{% if request.user.is_staff %} 
+
+
+<ul>
+    <li><a class="active" href="{% url 'students1' %}">Back</a></li>
+    {% comment %} <li><a href="{% url 'home' %}">Back</a></li> {% endcomment %}
+  </ul>
+  
+
+  <form class="form-inline" role="form"  method = 'POST'> {% csrf_token %}
+	<center>
+  <h1 style="margin-bottom: 30px;">Student Attendance Overview</h1>		
+  <div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-orderby">Subject:</label>
+		<select id="pref-orderby" class="form-control" name='subject' >
+			<option value='SCIENCE' {% if subject == 'SCIENCE' %} selected {% endif %}>Science</option>
+			<option value='ENGLISH' {% if subject == 'ENGLISH' %} selected {% endif %}>English</option>
+			<option value='BEEE' {% if subject == 'BEEE' %} selected {% endif %}>BEEE</option>
+			<option value='M2' {% if subject == 'M2' %} selected {% endif %}>M2</option>
+			<option value='M1' {% if subject == 'M1' %} selected {% endif %}>M1</option>
+		</select>                                
+	</div>
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-orderby">Sem:</label>
+		<select id="pref-orderby" class="form-control" name='sem' value = "{{ sem }}">
+			<option value=1 {% if sem == 1 %} selected {% endif %}>1</option>
+			<option value=2 {% if sem == 2 %} selected {% endif %}>2</option>
+			<option value=3 {% if sem == 3 %} selected {% endif %}>3</option>
+			<option value=4 {% if sem == 4 %} selected {% endif %}>4</option>
+			<option value=5 {% if sem == 5 %} selected {% endif %}>5</option>
+			<option value=6 {% if sem == 6 %} selected {% endif %}>6</option>
+			<option value=7 {% if sem == 7 %} selected {% endif %}>7</option>
+			<option value=8 {% if sem == 8 %} selected {% endif %}>8</option>
+		</select>                                
+	</div>
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-orderby">Branch:</label>
+		<select id="pref-orderby" class="form-control" name="branch" value = "{{ branch }}">
+			<option value='E & C' {% if branch == 'E & C' %} selected {% endif %}>E & C</option>
+			<option value='MECHANICAL' {% if branch == 'MECHANICAL' %} selected {% endif %}>MECHANICAL</option>
+			<option value='COMPUTER SCIENCE' {% if branch == 'COMPUTER SCIENCE' %} selected {% endif %}>COMPUTER SCIENCE</option>
+			<option>M2</option>
+		</select>                                
+	</div>
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-orderby">Division:</label>
+		<select id="pref-orderby" class="form-control" name="division" value="{{ division }}">
+			<option value="A" {% if division == 'A' %} selected {% endif %}>A</option>
+			<option value="B" {% if division == 'B' %} selected {% endif %}>B</option>
+			<option value="c" {% if division == 'C' %} selected {% endif %}>C</option>
+		</select>                                
+	</div> <!-- form group [order by] --> 
+	<div class="form-group">    
+		<div class="checkbox" style="margin-left:10px; margin-right:10px;">
+			<label for="birthday">Date: {{ date1|date:"SHORT_DATE_FORMAT" }}</label>
+			<input type="date" id="birthday" name="date" required value="{{ date }}">
+			{% comment %} <label for="birthday">Start time:</label>
+			<input type="time" id="birthday" name="stime">
+			<label for="birthday">End time:</label>
+			<input type="time" id="birthday" name="etime"> {% endcomment %}
+		</div>
+		<!-- <button type="submit" class="btn btn-default filter-col"style="background: #77e977;">
+			 Proceed to take attendence
+		</button>   -->
+	</div>
+	<br>
+		<button type="submit" class="btn btn-default filter-col"style="background: #77e977;margin-top:20px;">
+			Get attendence
+	   </button> 
+	</form>   
+	</center>
+<!-- <form method="POST"> -->
+
+	
+	<div class="container">
+		<div class="row">
+			
+			
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<section class="content">
+				{% comment %} <input type="submit" value="Save attendence" style="color:blue;margin-left:430px;"> {% endcomment %}
+				<div class="container">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="table-container">
+								{% if attendence %}
+								<table class="table table-filter">
+									<tbody>
+										{% for data in attendence %}
+
+											<tr data-status="pagado">
+												<td>
+													<label for="" style="margin-left: 20px"> {{ data.0 }}</label>
+												</td>
+												<td>
+													</a>
+												</td>
+												<td>
+													<div class="media">
+														<a href="#" class="pull-left" style="margin-left: 65px">
+															<img src="/media/{{ data.3 }}" class="media-photo" style="border-radius: 50%;height: 40px;width: 40px;">
+														</a>
+														<div class="media-body">
+															<span class="media-meta pull-right" style="color:
+															{% if data.1 == 'Present' %}
+															green
+															{% else %}
+															red
+															{% endif %};
+															margin-right: 60px;
+															font-weight: 700;
+															">{{ data.1 }}</span>
+															<h4 class="title" style="margin-left: 200px">
+															{{ data.2 }}
+															<span style="width: 100px;height:20px;background:red"></span>
+															</h4>
+														</div>
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+										
+									</tbody>
+								</table>
+								{% else %}
+								No attendence available
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		</div>
+	</div>
+<!-- </form> -->
+
+
+
+
+{% else %}
+Only faculty has acess to this page
+<a class="navbar-brand" href="{% url 'home'%}">Go to home</a>
+{% endif %}

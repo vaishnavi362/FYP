@@ -1,0 +1,276 @@
+{% load static %}
+<header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static '/home/css/student_details.css' %}" type="text/css">
+</header>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    {% comment %} <a class="navbar-brand" href="{% url 'home' %}">Home</a> {% endcomment %}
+    <a class="navbar-brand" href="{% url 'students1' %}">Back</a>
+    <a class="nav-link active" href="{% url 'logout' %}" >Logout</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul >
+        
+    </div>
+</nav>
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{ student.image.url }}" alt="" style="width: 55%;height: 54%;"/>
+                            {% comment %} <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{ student.first_name }}
+                                    </h5>
+                                    <h6>
+                                        Student
+                                    </h6>
+                                    <h6>
+                                        <a href="{% url 'send_message' student.pk %}">Click here to send alert message</a>
+                                    </h6>
+                                    <!-- <p class="proile-rating">Total attendence : <span>{{ total_attendence }}/100</span></p> -->
+                                    <!-- <a href="{% url 'download_student_attendence' student.pk %}">View atendence</a> -->
+                            {% comment %} <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                </li>
+                            </ul> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{% url 'update_student' student.pk %}" class="btn-card" title="Click to edit">Edit</a> 
+                        {% if not student.status and user.is_staff %}
+                            <a href="{% url 'create_student_user' student.pk %}" class="btn-card" title="Click to edit">| Create username</a>   
+                        {% endif %}  
+
+                        {% comment %} <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> {% endcomment %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        {% comment %} <div class="profile-work">
+                            <p>WORK LINK</p>
+                            <a href="">Website Link</a><br/>
+                            <a href="">Bootsnipp Profile</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Web Designer</a><br/>
+                            <a href="">Web Developer</a><br/>
+                            <a href="">WordPress</a><br/>
+                            <a href="">WooCommerce</a><br/>
+                            <a href="">PHP, .Net</a><br/>
+                        </div>{% endcomment %}
+                    </div> 
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.first_name }}  {{ student.last_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>USN</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.student_usn }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone Number</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.phone }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email ID</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.email }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Branch</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.branch }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Semester</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.sem }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Division</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.division }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>D.O.B</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.date_of_birth }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.gender }}</p>
+                                            </div>
+                                        </div>
+                                        
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Experience</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Hourly Rate</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>10$/hr</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Total Projects</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>230</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>English Level</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Availability</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6 months</p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <p>Your detail description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="font-size24 sm-font-size22 xs-font-size20">Attendance {{ SUBJECT_CHOUCE }}</h5>
+
+                {% for subject, att in attendence.items  %}
+
+                    <div class="sm-no-margin" >
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-7">{{ subject }}</div>
+                                <div class="col-5 text-right">{{ att.percentage }} 
+                                {% if att.percentage != 'no atendence' %}    
+                                    %
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress">
+                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{% if att.percentage != 'no atendence' %}  {{ att.percentage }}% {% endif %} ; 
+                                background:{{ att.color }};
+                            " class="animated custom-bar progress-bar slideInLeft bg-sky"></div>
+                        </div>
+                {% endfor %}
+                        <!-- <div class="progress-text">
+                            <div class="row">
+                                <div class="col-7">M1</div>
+                                <div class="col-5 text-right">0%</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress">
+                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%" class="animated custom-bar progress-bar slideInLeft bg-orange"></div>
+                        </div> -->
+                        <!-- <div class="progress-text">
+                            <div class="row">
+                                <div class="col-7">M2</div>
+                                <div class="col-5 text-right">0%</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress">
+                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%" class="animated custom-bar progress-bar slideInLeft bg-green"></div>
+                        </div> -->
+                        <!-- <div class="progress-text">
+                            <div class="row">
+                                <div class="col-7">BEEE</div>
+                                <div class="col-5 text-right">0%</div>
+                            </div>  
+                        </div>
+                        <div class="custom-progress progress">
+                            <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%" class="animated custom-bar progress-bar slideInLeft bg-yellow"></div>
+                        </div> -->
+                    </div>
+
+                </div>
+            </div>
+            </form>           
+        </div>
+
+                    
+
+            <div class="col-md-12">
+
+            </div>
+        </div>
+    </div>
+</div>

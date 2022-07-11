@@ -1,0 +1,78 @@
+{% load static %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!--author:starttemplate-->
+<!--reference site : starttemplate.com-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords"
+          content="unique login form,leamug login form,boostrap login form,responsive login form,free css html login form,download login form">
+    <meta name="author" content="leamug">
+    <title>{{ form }} login Page</title>
+    <link href="css/style.css" rel="stylesheet" id="style">
+    <!-- Bootstrap core Library -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/home/css/login.css' %}" type="text/css">
+</head>
+<body style="background-image: url({% static '/home/images/' %}{{ image }})">
+    <form method = 'POST' action=''> {% csrf_token %}
+        {% comment %} validation errors {% endcomment %}
+        {% if error %}
+                <div class="feedback bg-light text-danger w-100 text-center">
+                    <h2>
+                    {{ error }}
+                    </h2>
+                </div>
+        {% endif %}
+<!-- Page Content -->
+<div class="container">
+    <div class="row" style="padding-right:90px">
+        <div class="col-md-offset-5 col-md-4 text-center">
+            <h1 class='text-white'>{{ form }} login Form</h1>
+              <div class="form-login"></br>
+                <h4>{{ form }} login</h4>
+                </br>
+                <input type="text" name="username" class="form-control input-sm chat-input" placeholder="username" requered/>
+                </br></br>
+                <input type="password" name="password" class="form-control input-sm chat-input" placeholder="password" requered/>
+                </br></br>
+                <div class="wrapper">
+                        <span class="group-btn">
+                            <input type="submit" class="btn btn-danger btn-md" value='Login'>
+                            {% comment %} login<i class="fa fa-sign-in"></i> {% endcomment %}
+                        </span>
+                        <br>
+                        
+                        {% if forg %}
+                        <span class="group-btn">
+                            <a href="{% url 'forgot_password' %}" class="text-white">Forgot password</a>
+                        </span>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </br></br></br>
+    <!--footer-->
+    <div class="footer text-white text-center">
+        <p><a href="{% url 'home' %}" style="color:red">HOME</a> © 2022 All rights reserved </p>
+    </div>
+    <!--//footer-->
+</div>
+</form>
+</body>
+</html>
