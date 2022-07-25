@@ -1,2 +1,2 @@
 # FYP
-Securing-Attendance-using-Blockchain-Technology 
+It is a Final Year Project based on Blockchain Technology
