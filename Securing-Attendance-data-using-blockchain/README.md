@@ -1,2 +1,1 @@
-# Securing Attendance data using blockchain
- Final year project
+# It is Final year project based on Blockchain Technology
